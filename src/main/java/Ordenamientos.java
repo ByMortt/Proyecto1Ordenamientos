@@ -1,5 +1,17 @@
+/**
+ * Clase que contiene los métodos de ordenamiento.
+ * @see Utilerias
+ * @see Main
+ * @version 3.0, 17/09/2023
+ * @author Oscar Cruz, Suzzette, Melissa
+ */
 public class Ordenamientos {
     // Selection sort
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de selección (Selection Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     */
     public static void selectionSort(int[] array) {
         int comparisons = 0;
         int swaps = 0;
@@ -26,6 +38,11 @@ public class Ordenamientos {
     }
 
     // Insertion sort
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de inserción (Insertion Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     */
     public static void insertionSort(int[] array) {
         int operations = 0;
         for (int i = 1; i < array.length; i++) {
@@ -44,6 +61,11 @@ public class Ordenamientos {
     }
 
     // Bubble sort
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de burbuja (Bubble Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     */
     public static void bubbleSort(int[] array) {
         int comparisons = 0;
         int swaps = 0;
@@ -74,6 +96,11 @@ public class Ordenamientos {
     }
 
     //Heap sort
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de ordenamiento por montón (Heap Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     */
     public static void heapSort(int[] array) {
         int comparisons = 0;
         int swaps = 0;
@@ -97,7 +124,12 @@ public class Ordenamientos {
         System.out.printf("Operaciones: %d\n", operations);
     }
 
-    // bucket sort algorithm, like the past algorithms, count the number of operations and print the array after each iteration
+    // bucket sort algorithm
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de ordenamiento por cubetas (Bucket Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     */
     public static void bucketSort(int[] array) {
         int comparisons = 0;
         int swaps = 0;
@@ -131,6 +163,65 @@ public class Ordenamientos {
         System.out.println("Lista ordenada");
         Utilerias.print(array);
         System.out.println("Operaciones de bucket sort");
+        System.out.printf("Comparaciones: %d\n", comparisons);
+        System.out.printf("Intercambios: %d\n", swaps);
+        System.out.printf("Operaciones: %d\n", operations);
+    }
+
+    //quick sort algorithm
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de ordenamiento rápido (Quick Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     * @param low   El índice más bajo del arreglo.
+     * @param high  El índice más alto del arreglo.
+     */
+    public static void quickSort(int[] array, int low, int high) {
+        int comparisons = 0;
+        int swaps = 0;
+        int operations;
+        if (low < high) {
+            int pi = Utilerias.partition(array, low, high);
+            quickSort(array, low, pi - 1);
+            quickSort(array, pi + 1, high);
+            Utilerias.print(array);
+            comparisons++;
+        }
+        operations = comparisons + swaps;
+        System.out.println("Lista ordenada");
+        Utilerias.print(array);
+        System.out.println("Operaciones de quick sort");
+        System.out.printf("Comparaciones: %d\n", comparisons);
+        System.out.printf("Intercambios: %d\n", swaps);
+        System.out.printf("Operaciones: %d\n", operations);
+    }
+
+    //merge sort algorithm (recursive) (top-down), like the past algorithms, count the number of operations and print the array after each iteration
+    /**
+     * Ordena un arreglo de enteros utilizando el algoritmo de ordenamiento por mezcla (Merge Sort).
+     *
+     * @param array El arreglo que se desea ordenar.
+     * @param l     El índice más bajo del arreglo.
+     * @param r     El índice más alto del arreglo.
+     */
+    public static void sort(int[] array, int l, int r) {
+        int comparisons = 0;
+        int swaps = 0;
+        int operations;
+        if (l < r) {
+            // Find the middle point
+            int m = (l + r) / 2;
+            // Sort first and second halves
+            sort(array, l, m);
+            sort(array, m + 1, r);
+            // Merge the sorted halves
+            Utilerias.merge(array, l, m, r);
+            System.out.println("Lista ordenada");
+            Utilerias.print(array);
+            comparisons++;
+        }
+        operations = comparisons + swaps;
+        System.out.println("Operaciones de merge sort");
         System.out.printf("Comparaciones: %d\n", comparisons);
         System.out.printf("Intercambios: %d\n", swaps);
         System.out.printf("Operaciones: %d\n", operations);
